@@ -1,0 +1,40 @@
+body {
+    background-color: #333;
+    padding: 0;
+}
+
+.fridgeContainer {
+    border: 1px solid #cecece;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 5px;
+    width: 200px;
+    height: 600px;
+    
+}
+
+.fridgeItem-container {
+    width: 80%;
+    height: 25px;
+    /* border: 1px solid whitesmoke; */
+    color: whitesmoke;
+    margin: 0 0 5px 0;
+    padding: 0;
+    text-align: center;
+    display: inline-block;
+}
+
+.divider {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 80%;
+}
+
+.fridgeItem-text {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* border: 1px solid red; */
+    display: inline-block;
+}
