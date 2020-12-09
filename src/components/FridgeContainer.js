@@ -1,23 +1,34 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import FridgeItem from "./FridgeItem"
-import fridgeData from "../fridgeData"
 
 //const data = fridgeItems.map(item => <FridgeItem key={item.id} fItem={item} />)
 
 function FridgeContainer() {
-    const [fridgeItems, setFridgeItems] = useState([])
+    const [fridgeItems, setFridgeItems] = useState([/*{id: 0, text: ""}*/])
+    let numOfItems = useRef(0)
 
     function addItem() {
-       fridgeData.push({id: 10, text: "test"})
+        fetch(`https://5fb777688e07f00016642da7.mockapi.io/todoapp/StockUp/${numOfItems.current}`, 
+        {
+            method: "DELETE"
+        }
+        )
+        .catch((error) => {
+            console.error('Error:', error);
+          })
+        numOfItems.current = numOfItems.current - 1
     }
 
+    // https://5fb777688e07f00016642da7.mockapi.io/todoapp/StockUp
     useEffect(() => {
-        setFridgeItems(e => fridgeData)
-    }, [])
-
-    useEffect(() => {
-        setFridgeItems(fridgeItems => fridgeData)
-    }, [fridgeItems])
+        // ${items.length-1}
+        fetch(`https://5fb777688e07f00016642da7.mockapi.io/todoapp/StockUp/`)
+        .then(response => response.json())
+        .then(data => {
+            setFridgeItems(data)
+            numOfItems.current = data.length
+        }) 
+    }, [fridgeItems.length])
     
     const data = fridgeItems.map(item => <FridgeItem key={item.id} fItem={item} />)
     // console.log(fridgeItems)
